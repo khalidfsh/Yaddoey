@@ -8,7 +8,7 @@
 
 import UIKit
 
-class toDoListViewController: UITableViewController {
+class ListViewController: UITableViewController {
     
     var todoArray = [String]()
     let defaults = UserDefaults.standard
