@@ -10,14 +10,14 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
-    var todoArray = [String]()
+    var todoArray = [Item]()
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        if let items = defaults.array(forKey: "ToDoList") as? [String]{
+        todoArray.append(Item("do this"))
+        if let items = defaults.array(forKey: "YaddoyItemList") as? [Item]{
             todoArray = items
         }
     }
@@ -28,18 +28,16 @@ class ListViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell", for: indexPath)
-        cell.textLabel?.text = todoArray[indexPath.row]
+        let item = todoArray[indexPath.row]
+        cell.textLabel?.text = item.title
+        cell.accessoryType = item.done ? .checkmark : .none
         return cell
     }
     
     //MARK - Tableview delegate methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-        
+        todoArray[indexPath.row].done = !todoArray[indexPath.row].done
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -50,9 +48,16 @@ class ListViewController: UITableViewController {
             alertTextField.placeholder = "Write a New Todo"
         }
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            (addAlert.textFields![0].text == "") ? (print("empty")) : (self.todoArray.append(addAlert.textFields![0].text!))
+            let itemTitle = addAlert.textFields![0].text
+            let newItem = (itemTitle == "") ? (nil) : (Item(addAlert.textFields![0].text!))
+            if newItem == nil {
+                return
+            }
+            self.todoArray.append(newItem!)
+            print("mooooooo")
+           // self.defaults.set(self.todoArray, forKey: "YaddoyItemList")
             self.tableView.reloadData()
-            self.defaults.set(self.todoArray, forKey: "ToDoList")
+
         }
         addAlert.addAction(action)
         present(addAlert, animated: true)

@@ -108,8 +108,7 @@
 				E972DE69212EC3670081DFB7 /* AppDelegate.swift */,
 				E9980DB321311DDA0042382C /* Controller */,
 				E9980DB421311DFF0042382C /* View */,
-				E972DE73212EC3680081DFB7 /* Assets.xcassets */,
-				E972DE75212EC3680081DFB7 /* LaunchScreen.storyboard */,
+				E9980DB821311EFF0042382C /* supporting Files */,
 				E972DE78212EC3680081DFB7 /* Info.plist */,
 				E972DE70212EC3670081DFB7 /* Yaddoey.xcdatamodeld */,
 			);
@@ -145,6 +144,7 @@
 		E9980DB421311DFF0042382C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E972DE75212EC3680081DFB7 /* LaunchScreen.storyboard */,
 				E972DE6D212EC3670081DFB7 /* Main.storyboard */,
 			);
 			path = View;
@@ -156,6 +156,14 @@
 				E9980DB621311E4C0042382C /* Item.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E9980DB821311EFF0042382C /* supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E972DE73212EC3680081DFB7 /* Assets.xcassets */,
+			);
+			path = "supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
