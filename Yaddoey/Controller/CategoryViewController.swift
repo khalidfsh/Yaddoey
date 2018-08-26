@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
     
-    var categories = [Category]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let realm = try! Realm()
+    var categories: Results<Category>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +25,19 @@ class CategoryViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return categories?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        let category = categories[indexPath.row]
-        cell.textLabel?.text = category.name
+        if let category = categories?[indexPath.row] {
+            print("whaaaat \(category)")
+            cell.textLabel?.text = category.name
+        } else {
+            cell.textLabel?.text = "No Categories Added Yet!!"
+            print(cell.textLabel!.text!)
+
+        }
         return cell
     }
     
@@ -47,7 +53,7 @@ class CategoryViewController: UITableViewController {
         let destination = segue.destination as! ListViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destination.category = categories[indexPath.row]
+            destination.category = categories?[indexPath.row]
         }
     }
     
@@ -59,17 +65,13 @@ class CategoryViewController: UITableViewController {
             categoryTextField.placeholder = "write your category name"
         }
         createCategoryAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (addActionButton) in
-            let categoryName = createCategoryAlert.textFields![0].text
-            
-            if (categoryName?.isEmpty)! {
-                return
-            } else {
-                let newCategory = Category(context: self.context)
+            if let categoryName = createCategoryAlert.textFields?[0].text{
+                let newCategory = Category()
                 newCategory.name = categoryName
-                self.categories.append(newCategory)
-                self.saveCategorys()
+                self.save(newCategory)
+            } else {
+                return
             }
-            
         }))
         
         present(createCategoryAlert, animated: true)
@@ -78,23 +80,19 @@ class CategoryViewController: UITableViewController {
     
     // MARK: - Data presisting methods, Saving and loading
     
-    func saveCategorys() {
+    func save(_ category: Category) {
         do {
-            try context.save()
+            try realm.write {
+                realm.add(category)
+            }
         } catch {
-            print("Error while Writing the Items List!!\nError:\(error)")
+            print("Error While Saving Category!!\nError:\(error)")
         }
-        
         tableView.reloadData()
     }
     
-    func loadCategorys(with request: NSFetchRequest<Category> = Category.fetchRequest()) {
-        do{
-            categories = try context.fetch(request)
-        } catch {
-            print("Error while Requesting Data from Database\nError: \(error)")
-        }
-        
+    func loadCategorys() {
+        categories = realm.objects(Category.self)
         tableView.reloadData()
     }
 }

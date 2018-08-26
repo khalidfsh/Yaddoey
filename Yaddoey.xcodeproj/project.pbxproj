@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A73122446EC45963A0C8A4B /* Pods_YaddoeyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC004547B96A9D75143B7954 /* Pods_YaddoeyTests.framework */; };
+		75D69E9F5953D51D3FAD7BFF /* Pods_YaddoeyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F265B82F59FC9E2BFB36DE /* Pods_YaddoeyUITests.framework */; };
+		B1CD21C5112E86BF9B6DEA6F /* Pods_Yaddoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713CE0B2AB210D0E2BF9B6C /* Pods_Yaddoey.framework */; };
 		E972DE6A212EC3670081DFB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE69212EC3670081DFB7 /* AppDelegate.swift */; };
 		E972DE6C212EC3670081DFB7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE6B212EC3670081DFB7 /* ListViewController.swift */; };
 		E972DE6F212EC3670081DFB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E972DE6D212EC3670081DFB7 /* Main.storyboard */; };
-		E972DE72212EC3670081DFB7 /* Yaddoey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E972DE70212EC3670081DFB7 /* Yaddoey.xcdatamodeld */; };
 		E972DE74212EC3680081DFB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E972DE73212EC3680081DFB7 /* Assets.xcassets */; };
 		E972DE77212EC3680081DFB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E972DE75212EC3680081DFB7 /* LaunchScreen.storyboard */; };
 		E972DE82212EC3680081DFB7 /* YaddoeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE81212EC3680081DFB7 /* YaddoeyTests.swift */; };
 		E972DE8D212EC3680081DFB7 /* YaddoeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE8C212EC3680081DFB7 /* YaddoeyUITests.swift */; };
 		E9980DBA21329AD10042382C /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9980DB921329AD10042382C /* CategoryViewController.swift */; };
+		E9980DBC2132DCD70042382C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9980DBB2132DCD70042382C /* Item.swift */; };
+		E9980DBE2132DD6F0042382C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9980DBD2132DD6F0042382C /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +40,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		014FF5E7089C601E6A1A4C7D /* Pods-Yaddoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yaddoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yaddoey/Pods-Yaddoey.debug.xcconfig"; sourceTree = "<group>"; };
+		0E37D6B9C291EB53EA9A8119 /* Pods-YaddoeyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaddoeyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YaddoeyUITests/Pods-YaddoeyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2713CE0B2AB210D0E2BF9B6C /* Pods_Yaddoey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yaddoey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ABF18E8552BF126D8B41F61 /* Pods-Yaddoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yaddoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yaddoey/Pods-Yaddoey.release.xcconfig"; sourceTree = "<group>"; };
+		4CCB2A65426DE61B4B7885CF /* Pods-YaddoeyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaddoeyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YaddoeyTests/Pods-YaddoeyTests.release.xcconfig"; sourceTree = "<group>"; };
+		A2F265B82F59FC9E2BFB36DE /* Pods_YaddoeyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YaddoeyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3F641F3CD5684521CB2CC4B /* Pods-YaddoeyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaddoeyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YaddoeyTests/Pods-YaddoeyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CC004547B96A9D75143B7954 /* Pods_YaddoeyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YaddoeyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0FCB69BA71EE97FA7746448 /* Pods-YaddoeyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaddoeyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YaddoeyUITests/Pods-YaddoeyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E972DE66212EC3670081DFB7 /* Yaddoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yaddoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E972DE69212EC3670081DFB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E972DE6B212EC3670081DFB7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E972DE6E212EC3670081DFB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E972DE71212EC3670081DFB7 /* Yaddoey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yaddoey.xcdatamodel; sourceTree = "<group>"; };
 		E972DE73212EC3680081DFB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E972DE76212EC3680081DFB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E972DE78212EC3680081DFB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +66,8 @@
 		E972DE9D212EC88C0081DFB7 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E972DE9E212EC89A0081DFB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E9980DB921329AD10042382C /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		E9980DBB2132DCD70042382C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E9980DBD2132DD6F0042382C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CD21C5112E86BF9B6DEA6F /* Pods_Yaddoey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A73122446EC45963A0C8A4B /* Pods_YaddoeyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +91,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75D69E9F5953D51D3FAD7BFF /* Pods_YaddoeyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		636D52CE756AA14828FCAC35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2713CE0B2AB210D0E2BF9B6C /* Pods_Yaddoey.framework */,
+				CC004547B96A9D75143B7954 /* Pods_YaddoeyTests.framework */,
+				A2F265B82F59FC9E2BFB36DE /* Pods_YaddoeyUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E972DE5D212EC3670081DFB7 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +115,8 @@
 				E972DE80212EC3680081DFB7 /* YaddoeyTests */,
 				E972DE8B212EC3680081DFB7 /* YaddoeyUITests */,
 				E972DE67212EC3670081DFB7 /* Products */,
+				EF987E5241A26228ACE7824E /* Pods */,
+				636D52CE756AA14828FCAC35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,9 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				E972DE69212EC3670081DFB7 /* AppDelegate.swift */,
-				E9980DB521311E180042382C /* Model */,
 				E9980DB321311DDA0042382C /* Controller */,
 				E9980DB421311DFF0042382C /* View */,
+				E9980DB521311E180042382C /* Model */,
 				E9980DB821311EFF0042382C /* supporting Files */,
 				E972DE78212EC3680081DFB7 /* Info.plist */,
 			);
@@ -153,7 +182,8 @@
 		E9980DB521311E180042382C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E972DE70212EC3670081DFB7 /* Yaddoey.xcdatamodeld */,
+				E9980DBB2132DCD70042382C /* Item.swift */,
+				E9980DBD2132DD6F0042382C /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,6 +196,19 @@
 			path = "supporting Files";
 			sourceTree = "<group>";
 		};
+		EF987E5241A26228ACE7824E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				014FF5E7089C601E6A1A4C7D /* Pods-Yaddoey.debug.xcconfig */,
+				2ABF18E8552BF126D8B41F61 /* Pods-Yaddoey.release.xcconfig */,
+				A3F641F3CD5684521CB2CC4B /* Pods-YaddoeyTests.debug.xcconfig */,
+				4CCB2A65426DE61B4B7885CF /* Pods-YaddoeyTests.release.xcconfig */,
+				D0FCB69BA71EE97FA7746448 /* Pods-YaddoeyUITests.debug.xcconfig */,
+				0E37D6B9C291EB53EA9A8119 /* Pods-YaddoeyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,9 +216,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E972DE91212EC3680081DFB7 /* Build configuration list for PBXNativeTarget "Yaddoey" */;
 			buildPhases = (
+				EE11F453625841EF723D2E2C /* [CP] Check Pods Manifest.lock */,
 				E972DE62212EC3670081DFB7 /* Sources */,
 				E972DE63212EC3670081DFB7 /* Frameworks */,
 				E972DE64212EC3670081DFB7 /* Resources */,
+				6AAA8AA39486580998C07B81 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,6 +235,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E972DE94212EC3680081DFB7 /* Build configuration list for PBXNativeTarget "YaddoeyTests" */;
 			buildPhases = (
+				FAD0A0673DB4CFFEE7DD166B /* [CP] Check Pods Manifest.lock */,
 				E972DE79212EC3680081DFB7 /* Sources */,
 				E972DE7A212EC3680081DFB7 /* Frameworks */,
 				E972DE7B212EC3680081DFB7 /* Resources */,
@@ -208,6 +254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E972DE97212EC3680081DFB7 /* Build configuration list for PBXNativeTarget "YaddoeyUITests" */;
 			buildPhases = (
+				45F0AC134D2485DCDCBC037E /* [CP] Check Pods Manifest.lock */,
 				E972DE84212EC3680081DFB7 /* Sources */,
 				E972DE85212EC3680081DFB7 /* Frameworks */,
 				E972DE86212EC3680081DFB7 /* Resources */,
@@ -295,14 +342,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		45F0AC134D2485DCDCBC037E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YaddoeyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AAA8AA39486580998C07B81 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Yaddoey/Pods-Yaddoey-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Yaddoey/Pods-Yaddoey-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE11F453625841EF723D2E2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yaddoey-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAD0A0673DB4CFFEE7DD166B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YaddoeyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E972DE62212EC3670081DFB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9980DBC2132DCD70042382C /* Item.swift in Sources */,
+				E9980DBE2132DD6F0042382C /* Category.swift in Sources */,
 				E9980DBA21329AD10042382C /* CategoryViewController.swift in Sources */,
 				E972DE6C212EC3670081DFB7 /* ListViewController.swift in Sources */,
-				E972DE72212EC3670081DFB7 /* Yaddoey.xcdatamodeld in Sources */,
 				E972DE6A212EC3670081DFB7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +606,7 @@
 		};
 		E972DE92212EC3680081DFB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 014FF5E7089C601E6A1A4C7D /* Pods-Yaddoey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +625,7 @@
 		};
 		E972DE93212EC3680081DFB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ABF18E8552BF126D8B41F61 /* Pods-Yaddoey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -517,6 +644,7 @@
 		};
 		E972DE95212EC3680081DFB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3F641F3CD5684521CB2CC4B /* Pods-YaddoeyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -537,6 +665,7 @@
 		};
 		E972DE96212EC3680081DFB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CCB2A65426DE61B4B7885CF /* Pods-YaddoeyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -557,6 +686,7 @@
 		};
 		E972DE98212EC3680081DFB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0FCB69BA71EE97FA7746448 /* Pods-YaddoeyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -576,6 +706,7 @@
 		};
 		E972DE99212EC3680081DFB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E37D6B9C291EB53EA9A8119 /* Pods-YaddoeyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -633,19 +764,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E972DE70212EC3670081DFB7 /* Yaddoey.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E972DE71212EC3670081DFB7 /* Yaddoey.xcdatamodel */,
-			);
-			currentVersion = E972DE71212EC3670081DFB7 /* Yaddoey.xcdatamodel */;
-			path = Yaddoey.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E972DE5E212EC3670081DFB7 /* Project object */;
 }
