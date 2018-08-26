@@ -16,9 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="BAz-jW-n2D">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="f3B-fv-49q" id="Gri-4W-96f"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="toDoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="toDoCell" id="IWO-zM-Tck">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWO-zM-Tck" id="azW-CO-cPI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -42,7 +51,45 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECs-go-PEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="3418" y="0.0"/>
+        </scene>
+        <!--Category View Controller-->
+        <scene sceneID="7Gb-qg-Zn3">
+            <objects>
+                <tableViewController id="nZu-8d-YBh" customClass="CategoryViewController" customModule="Yaddoey" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XGI-Rt-O4n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="categoryCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" id="q3Y-eg-aU7">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q3Y-eg-aU7" id="r2J-3e-T8M">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nZu-8d-YBh" id="LFK-81-OOi"/>
+                            <outlet property="delegate" destination="nZu-8d-YBh" id="RIZ-2b-5Zr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="EFv-Qh-lzf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pRE-4h-RAq">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="nZu-8d-YBh" id="GYn-Rr-vGI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="f3B-fv-49q" kind="show" identifier="goToCategoryList" id="HO7-2c-Sq6"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a9r-9D-vKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2146" y="0.0"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="APr-wj-4Jd">
@@ -59,7 +106,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="f3B-fv-49q" kind="relationship" relationship="rootViewController" id="u8m-rK-pZw"/>
+                        <segue destination="nZu-8d-YBh" kind="relationship" relationship="rootViewController" id="Tv0-Ab-amq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5s-Kg-hkd" userLabel="First Responder" sceneMemberID="firstResponder"/>

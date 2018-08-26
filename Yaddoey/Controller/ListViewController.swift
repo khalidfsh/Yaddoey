@@ -7,89 +7,129 @@
 //
 
 import UIKit
+import CoreData
 
 class ListViewController: UITableViewController {
     
-    var todoArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
+    var category: Category? {
+        didSet{
+            navigationItem.title = category?.name
+            loadItems()
+        }
+    }
+    var items = [Item]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do{
-                 todoArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error while louding ")
-            }
-        }
+        
     }
     
     
-    // MARK - Tableview datasource methods
-    
+    // MARK: - Table view data source
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoArray.count
+        return items.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell", for: indexPath)
-        let item = todoArray[indexPath.row]
+        let item = items[indexPath.row]
         cell.textLabel?.text = item.title
-        cell.accessoryType = todoArray[indexPath.row].done ? .checkmark : .none
+        cell.accessoryType = items[indexPath.row].done ? .checkmark : .none
         return cell
     }
     
     
-    // MARK - Tableview delegate methods
+    // MARK: - Table view delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        todoArray[indexPath.row].done = !todoArray[indexPath.row].done
-        self.updateData()
+        items[indexPath.row].done = !items[indexPath.row].done
+//        context.delete(todoArray[indexPath.row])
+//        todoArray.remove(at: indexPath.row)
+        self.saveItems()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
-    // MARK - Add new item to todoArray
+    // MARK: - Add a new Yaddoy item functionallty
     
     @IBAction func addButtonPressed(_ sender: Any) {
         let addAlert = UIAlertController(title: "Add New Yaddoy Todo", message: "", preferredStyle: .alert)
-        func addTextField(){
-            addAlert.addTextField { (alertTextField) in
-                alertTextField.placeholder = "Write a New Todo"
-            }
-        }
-        addTextField()
-        while((addAlert.textFields?.last?.text?.isEmpty)! && (addAlert.textFields?.last?.isEditing)!){
-            addTextField()
+        addAlert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Write a New Todo"
         }
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             let itemTitle = addAlert.textFields![0].text
-            let newItem = (itemTitle == "") ? (nil) : (Item(addAlert.textFields![0].text!))
-            if newItem == nil {
+            
+            if itemTitle == "" {
                 return
             } else {
-                self.todoArray.append(newItem!)
-                self.updateData()
-                self.tableView.reloadData()
+                let newItem = Item(context: self.context)
+                newItem.done = false
+                newItem.title = itemTitle
+                newItem.category = self.category
+                self.items.append(newItem)
+                self.saveItems()
             }
         }
         addAlert.addAction(action)
+        
         present(addAlert, animated: true)
-       
     }
     
     
-    // MARK - Reuseble Functions
+    // MARK: - Data presisting methods, Saving and loading
     
-    func updateData() {
-        let encoder = PropertyListEncoder()
+    func saveItems() {
         do {
-            let data = try encoder.encode(todoArray)
-            try data.write(to: dataFilePath!)
+            try context.save()
         } catch {
-            print("Error while Encoding and Writing the Items List!!\nError:\(error)")
+            print("Error while Writing the Items List!!\nError:\(error)")
         }
+        
         tableView.reloadData()
+    }
+    
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+        let catagoryPredicate = NSPredicate(format: "category.name MATCHES %@", self.category!.name!)
+        
+        if (request.predicate) != nil {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [request.predicate!, catagoryPredicate])
+        } else {
+            request.predicate = catagoryPredicate
+        }
+        
+        do{
+            items = try context.fetch(request)
+        } catch {
+            print("Error while Requesting Data from Database\nError: \(error)")
+        }
+        
+        tableView.reloadData()
+    }
+}
+
+
+// MARK: - Search Bar Methods
+
+extension ListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        let searchPredicate = NSPredicate(format: "title CONTAINS %@ ", searchBar.text!)
+        
+        request.predicate = searchPredicate
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        loadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
     }
 }
 
