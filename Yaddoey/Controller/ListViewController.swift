@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ListViewController: UITableViewController {
+class ListViewController: SwipeTableViewController {
     
     let realm = try? Realm()
     var category: Category? {
@@ -32,9 +32,8 @@ class ListViewController: UITableViewController {
         return todoItems?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItems?[indexPath.row] {
-            print("whaaaat \(item)")
             cell.textLabel?.text = item.title
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
@@ -72,11 +71,12 @@ class ListViewController: UITableViewController {
             alertTextField.placeholder = "Write a New Todo"
         }
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            if let itemTitle = addAlert.textFields![0].text {
+            if let itemTitle = addAlert.textFields?[0].text {
                 do {
                     try self.realm?.write {
                         let newItem = Item()
                         newItem.title = itemTitle
+                        newItem.dateCreated = Date()
                         self.category?.items.append(newItem)
                     }
                 } catch {
@@ -93,7 +93,21 @@ class ListViewController: UITableViewController {
     }
     
     
-    // MARK: - Data presisting methods, Saving and loading
+    // MARK: - Data presisting methods, Saving, loading, deleting
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let itemToDelete = self.todoItems?[indexPath.row] {
+            do {
+                try realm!.write {
+                    realm!.delete(itemToDelete)
+                }
+                //action.fulfill(with: .delete)
+            } catch {
+                print("Error Trying To Delete a Category named: \(itemToDelete.title)\n Error:\(error)")
+            }
+            //self.tableView.reloadData()
+        }
+    }
     
     func save(_ item: Item) {
         do{
@@ -117,7 +131,7 @@ class ListViewController: UITableViewController {
 
 extension ListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        todoItems = todoItems?.filter("title CONTAINS %@ ", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+        todoItems = todoItems?.filter("title CONTAINS[cd] %@ ", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         tableView.reloadData()
     }
 
