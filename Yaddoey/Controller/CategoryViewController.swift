@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -17,13 +18,13 @@ class CategoryViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80.0
+        tableView.separatorStyle = .none
         
         loadCategorys()
         
     }
-    /*-----------------------------------------------------------------------------------------------------------------------------------------
-     ----------------------------------------------------------------------()---------------------------------------------------------------------
-     ---------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------
+     ------------------------------------------------------------------------------------------------*/
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 1
@@ -31,20 +32,22 @@ class CategoryViewController: SwipeTableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet!!"
-        print(cell.textLabel!.text!)
+        if let category = categories?[indexPath.row] {
+            guard let color = UIColor.init(hexString: category.cellBackgroundColor) else {fatalError()}
+            cell.textLabel?.text = category.name
+            cell.backgroundColor = color
+            cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+        }
         return cell
     }
-    /*-----------------------------------------------------------------------------------------------------------------------------------------
-     ----------------------------------------------------------------------()---------------------------------------------------------------------
-     -----------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------
+     ------------------------------------------------------------------------------------------------*/
     // MARK: - Table view delegate methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToCategoryList", sender: self)
+        performSegue(withIdentifier: "goToTodoList", sender: self)
     }
-    /*-----------------------------------------------------------------------------------------------------------------------------------------
-     ----------------------------------------------------------------------()---------------------------------------------------------------------
-     -----------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------
+     ------------------------------------------------------------------------------------------------*/
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! ListViewController
@@ -53,19 +56,19 @@ class CategoryViewController: SwipeTableViewController {
             destination.category = categories?[indexPath.row]
         }
     }
-    /*-----------------------------------------------------------------------------------------------------------------------------------------
-     ----------------------------------------------------------------------()---------------------------------------------------------------------
-     -----------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------
+     ------------------------------------------------------------------------------------------------*/
     // MARK: - Add a new Yaddoy Category functionallty
     @IBAction func addButtonPressed(_ sender: Any) {
-        let createCategoryAlert = UIAlertController(title: "Create a new Yaddoy Category", message: "", preferredStyle: .alert)
+        let createCategoryAlert = UIAlertController(title: "أضف مجلد اعمال جديد", message: "", preferredStyle: .alert)
         createCategoryAlert.addTextField { (categoryTextField) in
-            categoryTextField.placeholder = "write your category name"
+            categoryTextField.placeholder = "اكتب اسم المجلد"
         }
-        createCategoryAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (addActionButton) in
+        createCategoryAlert.addAction(UIAlertAction(title: "أضف", style: .default, handler: { (addActionButton) in
             if let categoryName = createCategoryAlert.textFields?[0].text{
                 let newCategory = Category()
                 newCategory.name = categoryName
+                newCategory.cellBackgroundColor = UIColor.randomFlat.hexValue()
                 self.save(newCategory)
             } else {
                 return
@@ -74,22 +77,34 @@ class CategoryViewController: SwipeTableViewController {
         
         present(createCategoryAlert, animated: true)
     }
-    /*-----------------------------------------------------------------------------------------------------------------------------------------
-     ----------------------------------------------------------------------()---------------------------------------------------------------------
-     ---------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------
+     ------------------------------------------------------------------------------------------------*/
     // MARK: - Realm Data Presisting Methods, Saving, loading, deleting
     
-    override func updateModel(at indexPath: IndexPath) {
+    override func deleteModel(at indexPath: IndexPath) {
         if let categoryToDelete = self.categories?[indexPath.row] {
             do {
                 try self.realm.write {
+                    self.realm.delete(categoryToDelete.items)
                     self.realm.delete(categoryToDelete)
                 }
-                //action.fulfill(with: .delete)
             } catch {
                 print("Error Trying To Delete a Category named: \(categoryToDelete.name)\n Error:\(error)")
             }
-            //self.tableView.reloadData()
+        }
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let categoryToUpdate = self.categories?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    for item in categoryToUpdate.items {
+                        item.done = true
+                    }
+                }
+            } catch {
+                print("Error Trying To Delete a Category named: \(categoryToUpdate.name)\n Error:\(error)")
+            }
         }
     }
     
@@ -101,15 +116,7 @@ class CategoryViewController: SwipeTableViewController {
         } catch {
             print("Error While Saving Category!!\nError:\(error)")
         }
-        
-        if let indexOfSavedCategory = categories?.index(of: category){
-            print(indexOfSavedCategory)
-            print(tableView.numberOfSections)
-            //tableView.reloadData()
-            //tableView.reloadRows(at: [IndexPath(row: indexOfSavedCategory, section: 0)], with: .automatic)
-            tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .automatic)
-        }
-        
+        tableView.reloadData()
     }
     
     func loadCategorys() {
@@ -117,36 +124,3 @@ class CategoryViewController: SwipeTableViewController {
         tableView.reloadData()
     }
 }
-/*-----------------------------------------------------------------------------------------------------------------------------------------
- ----------------------------------------------------------------------()---------------------------------------------------------------------
- ---------------------------------------------------------------------------*/
-// MARK: - Swipeable Cell Delegate Methods
-//extension CategoryViewController: SwipeTableViewCellDelegate {
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-//        guard orientation == .right else { return nil }
-//
-//        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-//            if let categoryToDelete = self.categories?[indexPath.row] {
-//                do {
-//                    try self.realm.write {
-//                        self.realm.delete(categoryToDelete)
-//                    }
-//                    //action.fulfill(with: .delete)
-//                } catch {
-//                    print("Error Trying To Delete a Category named: \(categoryToDelete.name)\n Error:\(error)")
-//                }
-//                //self.tableView.reloadData()
-//            }
-//        }
-//
-//        //deleteAction.image = UIImage(named: "delete")
-//
-//        return [deleteAction]
-//    }
-//
-//    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-//        var options = SwipeOptions()
-//        options.expansionStyle = .destructiveAfterFill
-//        return options
-//    }
-//}

@@ -14,7 +14,6 @@
 		E972DE6C212EC3670081DFB7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE6B212EC3670081DFB7 /* ListViewController.swift */; };
 		E972DE6F212EC3670081DFB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E972DE6D212EC3670081DFB7 /* Main.storyboard */; };
 		E972DE74212EC3680081DFB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E972DE73212EC3680081DFB7 /* Assets.xcassets */; };
-		E972DE77212EC3680081DFB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E972DE75212EC3680081DFB7 /* LaunchScreen.storyboard */; };
 		E972DE82212EC3680081DFB7 /* YaddoeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE81212EC3680081DFB7 /* YaddoeyTests.swift */; };
 		E972DE8D212EC3680081DFB7 /* YaddoeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DE8C212EC3680081DFB7 /* YaddoeyUITests.swift */; };
 		E9980DBA21329AD10042382C /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9980DB921329AD10042382C /* CategoryViewController.swift */; };
@@ -55,7 +54,6 @@
 		E972DE6B212EC3670081DFB7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E972DE6E212EC3670081DFB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E972DE73212EC3680081DFB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E972DE76212EC3680081DFB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E972DE78212EC3680081DFB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E972DE7D212EC3680081DFB7 /* YaddoeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaddoeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E972DE81212EC3680081DFB7 /* YaddoeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YaddoeyTests.swift; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 		E972DE8C212EC3680081DFB7 /* YaddoeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YaddoeyUITests.swift; sourceTree = "<group>"; };
 		E972DE8E212EC3680081DFB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E972DE9C212EC88C0081DFB7 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
-		E972DE9D212EC88C0081DFB7 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E972DE9E212EC89A0081DFB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E9980DB921329AD10042382C /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E9980DBB2132DCD70042382C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -176,7 +173,6 @@
 		E9980DB421311DFF0042382C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E972DE75212EC3680081DFB7 /* LaunchScreen.storyboard */,
 				E972DE6D212EC3670081DFB7 /* Main.storyboard */,
 			);
 			path = View;
@@ -323,7 +319,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E972DE77212EC3680081DFB7 /* LaunchScreen.storyboard in Resources */,
 				E972DE74212EC3680081DFB7 /* Assets.xcassets in Resources */,
 				E972DE6F212EC3670081DFB7 /* Main.storyboard in Resources */,
 			);
@@ -371,12 +366,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Yaddoey/Pods-Yaddoey-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
@@ -478,15 +475,6 @@
 				E972DE9E212EC89A0081DFB7 /* en */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E972DE75212EC3680081DFB7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E972DE76212EC3680081DFB7 /* Base */,
-				E972DE9D212EC88C0081DFB7 /* ar */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
